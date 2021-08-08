@@ -4,7 +4,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Confirmation } from "../pages/Confirmation";
 import { Home } from "../pages/Home";
 import { IdentificationScreen } from "../pages/IdentificationScreen";
-import { PlantSelect } from "../pages/PlantSelect";
+import { PlantSave } from "../pages/PlantSave";
+import { MyPlants } from "../pages/MyPlants";
+import AuthRoutes from "./tab.routes";
 
 import { theme } from "../global/styles/theme";
 
@@ -27,7 +29,15 @@ export function StackRoutes() {
       />
       <Screen
         name="PlantSelect"
-        component={PlantSelect}
+        component={AuthRoutes}
+      />
+      <Screen
+        name="PlantSave"
+        component={PlantSave}
+      />
+      <Screen
+        name="MyPlants"
+        component={AuthRoutes}
       />
     </Navigator>
   )

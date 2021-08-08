@@ -23,6 +23,7 @@ export const Subtitle = styled.Text`
 
 export const HeaderStyle = styled.View`
   padding: 0 30px;
+  margin-top: 20px;
 `;
 
 export const ButtonsList = styled.View``

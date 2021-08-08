@@ -5,6 +5,7 @@ import { PlantCardPrimary } from '../../components/PlantCardPrimary';
 import { EnvironmentButton } from '../../components/EnvironmentButton';
 import { Load } from '../../components/Load';
 
+import { useNavigation, CommonActions } from '@react-navigation/native';
 import { FlatList, ActivityIndicator } from 'react-native';
 import api from '../../services/api';
 
@@ -18,27 +19,16 @@ import {
   CardList,
 } from './styles';
 import { theme } from '../../global/styles/theme';
+import { PlantProps } from '../../libs/storage';
 
 interface EnviromentProps {
   key: string;
   title: string;
 }
 
-interface PlantProps {
-  id: string;
-  name: string;
-  about: string;
-  water_tips: string;
-  photo: string;
-  environments: [string];
-  frequency: {
-    times: number;
-    repeat_every: string;
-  }
-}
-
-
 export function PlantSelect() {
+  const navigation = useNavigation();
+
   const [environments, setEnvironments] = useState<EnviromentProps[]>([]);
   const [plants, setPlants] = useState<PlantProps[]>([]);
   const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
@@ -63,7 +53,7 @@ export function PlantSelect() {
 
   async function fetchPlants() {
     const { data } = await api
-      .get(`plants?_sort=name&_order=asc&page=${page}&_limit=10`);
+      .get(`plants?_sort=name&_order=asc&page=${page}&_limit=100`);
     if (!data)
       return setLoading(true);
 
@@ -87,6 +77,15 @@ export function PlantSelect() {
     setPage(oldValue => oldValue + 1);
     fetchPlants();
   } */
+
+  function handlePlantSelect(plant:PlantProps){    
+    navigation.dispatch(
+      CommonActions.navigate({
+        name: 'PlantSave',
+        params: {plant}
+      })
+    );
+  }
 
   useEffect(() => {
     async function fetchEnvironment() {
@@ -147,6 +146,7 @@ export function PlantSelect() {
           renderItem={({ item }) => (
             <PlantCardPrimary
               data={item}
+              onPress={() => handlePlantSelect(item)}
             />
           )}
           numColumns={2}

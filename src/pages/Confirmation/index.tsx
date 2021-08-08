@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../../components/Button';
 
-import { useNavigation, CommonActions } from '@react-navigation/native';
+import { useNavigation, CommonActions, useRoute } from '@react-navigation/native';
 
 import {
   Container,
@@ -12,14 +12,36 @@ import {
   Footer,
 } from './styles';
 
+interface Params {
+  title: string;
+  subtitle: string;
+  buttonTitle: string;
+  icon: 'smile' | 'hug',
+  nextScreen: string;
+}
+
+const emojis = {
+  hug: '🤗',
+  smile: '😄'
+}
+
 
 export function Confirmation() {
   const navigation = useNavigation();
+  const routes = useRoute();
+
+  const {
+    title,
+    subtitle,
+    buttonTitle,
+    icon,
+    nextScreen
+  } = routes.params as Params;
 
   function handleConfirm() {
     navigation.dispatch(
       CommonActions.navigate({
-        name: 'PlantSelect',
+        name: nextScreen,
       })
     );
   }
@@ -28,22 +50,22 @@ export function Confirmation() {
     <Container>
       <Content>
         <Emoj>
-          😄
+          {emojis[icon]}
         </Emoj>
 
         <Title>
-          Prontinho
+          {title}
         </Title>
 
         <Subtitle>
-          Agora vamos começar a cuidar das suas
-          plantinhas com muito cuidado.
+          {subtitle}
         </Subtitle>
 
         <Footer>
           <Button
             onPress={handleConfirm}
-            title="Começar" />
+            title={buttonTitle}
+          />
         </Footer>
       </Content>
     </Container>

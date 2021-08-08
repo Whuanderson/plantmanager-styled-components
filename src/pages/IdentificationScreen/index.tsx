@@ -48,13 +48,23 @@ export function IdentificationScreen() {
     if (!name)
       return Alert.alert('Informar um nome')
 
-    await AsyncStorage.setItem('@plantmanager:user', name);
-
-    navigation.dispatch(
-      CommonActions.navigate({
-        name: 'Confirmation',
-      })
-    );
+      try{
+        await AsyncStorage.setItem('@plantmanager:user', name);
+        navigation.dispatch(
+          CommonActions.navigate({
+            name: 'Confirmation',
+            params: {
+              title: 'Prontinho',
+              subtitle: 'Agora vamos começar a cuidar das suas plantinhas com muito cuidado.',
+              buttonTitle: 'Começar',
+              icon: 'smile',
+              nextScreen: 'PlantSelect'
+            }
+          })
+        );
+      }catch{
+        Alert.alert('Não foi possivel salvar o seu nome')
+      }
   }
 
   return (
