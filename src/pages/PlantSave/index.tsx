@@ -22,6 +22,7 @@ import {
   TipText,
   AlertLabel,
   DateTimePickerText,
+  ScrollContainer,
 } from './styles';
 
 interface Params {
@@ -79,66 +80,69 @@ export function PlantSave() {
   }
 
   return (
-    <Container>
-      <PlantInfo>
-        <SvgFromUri
-          uri={plant.photo}
-          height={150}
-          width={150}
-        />
-
-        <PlantName>
-          {plant.name}
-        </PlantName>
-
-        <PlantAbout>
-          {plant.about}
-        </PlantAbout>
-      </PlantInfo>
-
-      <Controller>
-        <TipContainer>
-          <TipImage
-            source={waterdrop}
+    <ScrollContainer>
+      <Container>
+        <PlantInfo>
+          <SvgFromUri
+            uri={plant.photo}
+            height={150}
+            width={150}
           />
-          <TipText>
-            {plant.water_tips}
-          </TipText>
-        </TipContainer>
 
-        <AlertLabel>
-          Escolha o melhor horário para ser lembrado
-        </AlertLabel>
+          <PlantName>
+            {plant.name}
+          </PlantName>
 
-        {showDatePicker && (
-          <DateTimePicker
-            style={{ height: 96, marginBottom: 20 }}
-            value={selectedDateTime}
-            mode="time"
-            display="spinner"
-            onChange={handleChangeTime}
+          <PlantAbout>
+            {plant.about}
+          </PlantAbout>
+        </PlantInfo>
+
+        <Controller>
+          <TipContainer>
+            <TipImage
+              source={waterdrop}
+            />
+            <TipText>
+              {plant.water_tips}
+            </TipText>
+          </TipContainer>
+
+          <AlertLabel>
+            Escolha o melhor horário para ser lembrado
+          </AlertLabel>
+
+          {showDatePicker && (
+            <DateTimePicker
+              style={{ height: 200 }}
+              value={selectedDateTime}
+              mode="time"
+              display="spinner"
+              onChange={handleChangeTime}
+            />
+          )}
+
+          {
+            Platform.OS === 'android' && (
+              <TouchableOpacity
+                style={{ width: '100%', alignItems: 'center', paddingVertical: 40 }}
+                onPress={handleDatetimePickerForAndroid}
+              >
+                <DateTimePickerText>
+                  {`Horário selecionado ${format(selectedDateTime, 'HH:mm')}`}
+                </DateTimePickerText>
+              </TouchableOpacity>
+            )
+          }
+
+          <Button
+            title="Cadastar planta"
+            onPress={handleSave}
           />
-        )}
 
-        {
-          Platform.OS === 'android' && (
-            <TouchableOpacity
-              style={{ width: '100%', alignItems: 'center', paddingVertical: 40 }}
-              onPress={handleDatetimePickerForAndroid}
-            >
-              <DateTimePickerText>
-                {`Horário selecionado ${format(selectedDateTime, 'HH:mm')}`}
-              </DateTimePickerText>
-            </TouchableOpacity>
-          )
-        }
+        </Controller>
+      </Container>
+    </ScrollContainer>
 
-        <Button
-          title="Cadastar planta"
-          onPress={handleSave}
-        />
-
-      </Controller>
-    </Container>
   );
 }

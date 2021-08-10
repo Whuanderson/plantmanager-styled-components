@@ -15,7 +15,6 @@ export const Content = styled.View`
 
 export const Title = styled.Text`
   font-size: ${RFValue(28)}px;
-  font-weight: bold;
   text-align: center;
   color: ${({ theme }) => theme.colors.heading};
   margin-top: ${getStatusBarHeight() + 38}px;

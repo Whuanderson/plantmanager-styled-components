@@ -27,9 +27,10 @@ const AuthRoutes = () => {
       },
       tabBarActiveTintColor: `${theme.colors.green}`,
       tabBarInactiveTintColor: `${theme.colors.heading}`,
+      tabBarLabelPosition: "beside-icon", 
     })}
     >
-      <Apptab.Screen
+      <Apptab.Screen 
         name="Nova Planta"
         component={PlantSelect}
         options={{

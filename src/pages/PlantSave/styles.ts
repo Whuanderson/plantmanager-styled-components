@@ -2,6 +2,11 @@ import styled from 'styled-components/native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 
+export const ScrollContainer = styled.ScrollView`
+ flex: 1;
+ background-color: ${({theme}) => theme.colors.shape};
+`;
+
 export const Container = styled.View`
  flex: 1;
  justify-content: space-between;
