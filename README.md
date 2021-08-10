@@ -1,24 +1,20 @@
 <h1 align="center">
-  <img alt="GamePlay" height="80" title="Plant Manager" src=".github/Logo.png" />
+  <img alt="plant manager" title="Plant Manager" src=".github/logo.png" />
 </h1>
 
 <div align="center">
-    <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Whuanderson/gameplay-nlw-rn">
+    <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Whuanderson/plantmanager-styled-components">
     <a href="https://www.linkedin.com/in/whuanderson-de-sousa-porto-marinho-a07204216//" target="_blank" rel="Whuanderson">
-      <img alt="Made by" src="https://img.shields.io/badge/Made%20by-Whuanderson-blue">
+      <img alt="Made by" src="https://img.shields.io/badge/Made%20by-Whuanderson-green">
     </a>
-    <img alt="License" src="https://img.shields.io/badge/License-MIT-blue">
+    <img alt="License" src="https://img.shields.io/badge/License-MIT-green">
   </div>
   
-   <p align="center" >
-     <img alt="GamePlay" title="GamePlay" src=".github/gif1.gif" width="220" height="400" />
-    <img alt="GamePlay" title="GamePlay" src=".github/gif2.gif" width="220" height="400" />
-     <img alt="GamePlay" title="GamePlay" src=".github/gif3.gif" width="220" height="400" />
-  </p>
-  
+  ![cover](.github/capa.png?style=flat)
+   
 
  <p align="center">
-  :rocket: Aplicativo para ajudar a conectar-se e organiza o momento de diversão e jogar com os amigos. Crie grupos para jogar seus games favoritos com seus amigos com esse App  que possui autenticação com Discord. Feito no NLW together da @Rocketseat
+  :rocket: Aplicativo para lhe ajudar a lembrar de cuidar de suas plantas de forma fácil de acordo com cada tipo de plantinha. Feito com a @Rocketseat, atualizado e utilizando styled components
  </p>
  
  <div align="center">
@@ -29,57 +25,55 @@
 
 # :hammer_and_wrench: Características 
 
-* Autenticação Social OAuth2 com servidor do Discord.
-* Obtém perfil do usuário cadastro no Discord (username e avatar);
-* Lista os servidores do Discord que o usuário faz parte;
-* Permite realizar o agendamento de partidas;
-* Permite filtrar as partidas por categoria;
-* Exibe se a partida foi agendada em um servidor próprio (anfitrião) ou em servidores de outros (convidado);
-* Compartilha o convite para ingressar no servidor do usuário;
-* Permite redirecionar o usuário para o seu próprio servidor;
-* Disponibiliza a função de Logout.
+-   [ ] Salva a identificação do usuário no próprio dispositivo o usuário;
+-   [ ] Consome de API os dados e características de cada planta;
+-   [ ] Salva localmente a planta que o usuário possue;
+-   [ ] Lembra o usuário quando regar e cuidar da plantinha de acordo com a frequência ideial das plantas que o usuário possui;
 
 # 🚀 Tecnologias
 
-* React Native
-* Typescript
-* Expo
-* Context API
-* Async Storage
-* Vector Icons
-* React Native Svg e Svg Transform
-* Axios
-* Gradient colors
-* OAuth2 Discord 
-* Expo Google Fonts
-* React Navigation Stack
-* React Native Gesture Handler
-* Expo Authentication
-* React Native Share
-* Deep Link
+-   [ ] React Native
+-   [ ] Typescript
+-   [ ] Expo
+-   [ ] Expo Local Notifications
+-   [ ] Async Storage
+-   [ ] Vector Icons
+-   [ ] Axios
+-   [ ] Date Fns
+-   [ ] Lottie
+-   [ ] Expo Google Fonts
+-   [ ] React Navigation Stack e Bottom Tabs
+-   [ ] React Native Gesture Handler
+-   [ ] Json Server
+-   [ ] Styled Components
 
 # 🔖 Layout
 
-Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/0kv33XYjvOgvKGKHBaiR07/GamePlay-NLW-Together?node-id=58913%3A83). É necessário ter conta no [Figma](http://figma.com/) para acessá-lo.
+Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/IhQRtrOZdu3TrvkPYREzOy/PlantManager/duplicate). É necessário ter conta no [Figma](http://figma.com/) para acessá-lo.
 
 # Executando o projeto
 
-Utilize o **yarn** ou o **npm install** para instalar as dependências do projeto.
-Em seguida, inicie o projeto.
+Utilize o **yarn** ou o **npm install** para instalar as depedências do projeto.
+Em seguida, inicie o projeto e a API fake com o Json Server.
 
 ```cl
 expo start
+json-server ./src/services/server.json --host SEU IP --port 3333 --delay 700
 ```
 
-Lembre-se de criar o seu App no servidor do Discord para obter as credencias de autenticação. Em seguida, defina no arquivo .env as configurações do seu App (remova o example do arquivo .env.example).
+ Substitua o host pelo seu endereço IP local. Faça o mesmo no arquivo API dentro de services.
  
- ```cl
-REDIRECT_URI=
-SCOPE=
-RESPONSE_TYPE=
-CLIENT_ID=
-CDN_IMAGE=
+ 
+ ```ts
+ import axios from 'axios';
+
+const api = axios.create({
+    baseURL: 'http://SEU_IP',
+});
+
+export default api;
 ```
+
 # :closed_book: Licença
 
 Lançado em 2021 :closed_book: Licença
